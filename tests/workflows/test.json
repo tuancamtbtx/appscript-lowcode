@@ -1,0 +1,22 @@
+{
+  "jobName": "test",
+  "apiVersion": "v1",
+  "tasks": [
+    {
+      "name": "read_personal_gmail",
+      "operator": "GmailReadOperator",
+      "params": {
+        "query": "test"
+      },
+      "dependencies": []
+    },
+    {
+      "name": "load_attachment_to_gcs",
+      "operator": "SlackSendOperator",
+      "params": {
+        "test": "test"
+      },
+      "dependencies": ["read_personal_gmail"]
+    }
+  ]
+}

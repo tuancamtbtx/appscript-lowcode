@@ -1,0 +1,50 @@
+{
+  "jobName": "test",
+  "apiVersion": "v1",
+  "tasks": [
+    {
+      "name": "read_personal_gmail",
+      "operator": "GmailReadOperator",
+      "params": {
+        "query": "test"
+      },
+      "dependencies": []
+    },
+    {
+      "name": "load_attachment_to_gcs",
+      "operator": "SlackSendOperator",
+      "params": {
+        "text": "test message",
+        "channel": "#slack-channel",
+        "token": <%= process.env.token %>,
+        "block": [
+            {
+              "type": "header",
+              "text": {
+                "type": "plain_text",
+                "text": "Google Workspace AppScript - Notification!",
+                "emoji": true
+              }
+            },
+            {
+              "type": "divider"
+            },
+            {
+              "type": "section",
+              "fields": [
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Job Name:*\n Ingestion Data From Personal Mail"
+                  },
+                  {
+                    "type": "mrkdwn",
+                    "text": "*Status:*\n Successfully"
+                  }
+              ]
+            }
+          ]
+      },
+      "dependencies": ["read_personal_gmail"]
+    }
+  ]
+}

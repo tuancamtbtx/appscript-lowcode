@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "lib": ["esnext"],
+    "experimentalDecorators": true,
+    "outDir": "build",
+    "types": ["google-apps-script", "jest", "node"]
+  },
+  "include": ["src", "tests"],
+  "exclude": ["node_modules", "dist", "build"],
+  "files": ["src/index.ts"]
+}
